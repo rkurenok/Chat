@@ -1,0 +1,115 @@
+﻿* {
+    padding: 0;
+    margin: 0;
+    border: 0; /* vertical-align: middle;*/
+    -webkit-transition: all 0.33s;
+    -moz-transition: all 0.33s;
+    -o-transition: all 0.33s;
+    transition: all 0.33s;
+}
+
+html {
+    background: #212121;
+}
+
+body {
+    max-width: 480px;
+    color: #999;
+    font-family: 'Roboto';
+    font-size: 17px;
+    margin: 0 auto;
+}
+
+a {
+    color: #ddd;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+    a:hover, a:focus {
+        color: #fff;
+    }
+
+#loginBlock, #inputForm {
+    padding: 4px;
+}
+
+#userName, #message {
+    width: 70%;
+    padding: 8px;
+    margin: 4px;
+    background: #191919;
+    color: white;
+    border: 1px solid #191919;
+    border-radius: 12px;
+}
+
+    #userName:hover, #message:hover {
+        border: 1px solid #333;
+    }
+
+#loginBtn, #sendBtn {
+    padding: 8px;
+    margin: 4px;
+    border: none;
+    border-radius: 12px;
+    background: #333;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+    #loginBtn:hover, #sendBtn:hover {
+        background: #444;
+    }
+
+center {
+    margin-top: 32px;
+}
+
+#header {
+    padding: 8px;
+}
+
+    #header > h3 {
+        margin: 10px;
+        padding: 0;
+    }
+
+#chatroom p {
+    display: block;
+    max-width: 480px;
+    word-wrap: break-word;
+    background: #333;
+    color: white;
+    padding: 12px;
+    margin: 8px;
+    border-radius: 16px;
+    position: relative;
+}
+
+    #chatroom p:hover {
+        background: #393939;
+    }
+
+.time {
+    display: inline-block;
+    /*font-size: 14px;*/
+    font-size: 12px;
+    font-weight: 500;
+    color: hsl(40, 100%, 55%);
+    /*padding: 8px;*/
+    position: absolute;
+    bottom: 0px;
+    right: 10px;
+}
+
+@media (max-width: 479px) {
+    body {
+        max-width: 100%;
+    }
+
+    #userName, #message {
+        width: 50%;
+    }
+}

@@ -1,0 +1,49 @@
+﻿html {
+    background: #ddd;
+}
+
+body {
+    max-width: 480px;
+    padding: 16px;
+    margin: 0 auto;
+    color: #333;
+    font-family: 'Roboto';
+    font-size: 17px;
+}
+
+#loginBlock {
+    padding: 4px;
+}
+
+#inputForm {
+    padding: 4px;
+}
+
+#userName, #message {
+    padding: 8px;
+    margin: 4px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+}
+
+    #userName:hover, #message:hover {
+        border: 1px solid #333;
+    }
+
+#loginBtn, #sendBtn {
+    padding: 8px;
+    margin: 4px;
+    border: none;
+    border-radius: 12px;
+    background: #777;
+    color: white;
+    cursor: pointer;
+}
+
+    #loginBtn:hover, #sendBtn:hover {
+        background: #888;
+    }
+
+center {
+    margin-top: 32px;
+}

@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>SignalR Chat</title>
+    <link rel="stylesheet" href="css/site.css" />
+</head>
+<body>
+    <div id="loginBlock">
+        Введите логин: <br />
+        <input id="userName" type="text" />
+        <input id="loginBtn" type="button" value="Войти" />
+    </div><br />
+
+    <div id="header"></div><br />
+
+    <div id="inputForm">
+        <input type="text" id="message" />
+        <input type="button" id="sendBtn" value="Отправить" onclick="setTimeout(function () {document.getElementById('message').value = ''}, 100)" />
+    </div>
+    <div id="chatroom"></div>
+
+    <script src="js/signalr.min.js"></script>
+    <script>
+        let interval1,
+            interval2,
+            push = false;
+        let hubUrl = "http://localhost:61507/chat";
+        const hubConnection = new signalR.HubConnectionBuilder()
+            .withUrl(hubUrl)
+            .configureLogging(signalR.LogLevel.Information)
+            .build();
+        let userName = "";
+        // получение сообщения от сервера
+        hubConnection.on("Receive", function (userName, message, time) {
+
+            // создаем элемент <b> для имени пользователя
+            let userNameElem = document.createElement("b");
+            userNameElem.appendChild(document.createTextNode(userName + ": "));
+
+            // создает элемент <p> для сообщения пользователя
+            let elem = document.createElement("p");
+            elem.appendChild(userNameElem);
+            //elem.appendChild(document.insertAdjacentHTML(message));
+            elem.insertAdjacentHTML('beforeend', message);
+
+            var firstElem = document.getElementById("chatroom").firstChild;
+            document.getElementById("chatroom").insertBefore(elem, firstElem);
+
+            // добавляем время отправки сообщения
+            let sendTime = document.createElement("span");
+            sendTime.classList.add('time');
+            sendTime.appendChild(document.createTextNode(time));
+            elem.appendChild(sendTime);
+
+            if (document.hidden && !push) {
+                interval1 = setInterval(function () { document.title = 'Новое сообщение' }, 1000);
+                interval2 = setInterval(function () { document.title = 'SignalR Chat' }, 2000);
+                push = true;
+            }
+        });
+
+        // установка имени пользователя
+        document.getElementById("userName").addEventListener("keyup", function (event) {
+            // Число 13 в "Enter" и клавиши на клавиатуре
+            if (event.keyCode === 13) {
+                // При необходимости отмените действие по умолчанию
+                event.preventDefault();
+                // Вызов элемента button одним щелчком мыши
+                document.getElementById("loginBtn").click();
+            }
+        });
+        document.getElementById("loginBtn").addEventListener("click", function (e) {
+            userName = document.getElementById("userName").value;
+            document.getElementById("header").innerHTML = "<h3>Welcom " + userName + "</h3>";
+        });
+        // отправка сообщения на сервер
+        document.getElementById("message").addEventListener("keyup", function (event) {
+            // Число 13 в "Enter" и клавиши на клавиатуре
+            if (event.keyCode === 13) {
+                // При необходимости отмените действие по умолчанию
+                event.preventDefault();
+                // Вызов элемента button одним щелчком мыши
+                document.getElementById("sendBtn").click();
+            }
+        });
+        document.getElementById("sendBtn").addEventListener("click", function (e) {
+            let message = document.getElementById("message").value;
+            let time = new Date().toLocaleTimeString();
+            hubConnection.invoke("Send", userName, message, time);
+        });
+
+        hubConnection.start();
+
+        window.onfocus = function () {
+            clearInterval(interval1);
+            clearInterval(interval2);
+            document.title = 'SignalR Chat';
+            push = false;
+        }
+    </script>
+</body>
+</html>
