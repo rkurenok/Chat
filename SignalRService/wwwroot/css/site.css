@@ -1,115 +1,109 @@
 ﻿* {
     padding: 0;
     margin: 0;
-    border: 0; /* vertical-align: middle;*/
-    -webkit-transition: all 0.33s;
-    -moz-transition: all 0.33s;
-    -o-transition: all 0.33s;
-    transition: all 0.33s;
+    border: 0;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
 }
 
 html {
-    background: #212121;
+    background: url(img/Background_site.png) fixed;
 }
 
 body {
-    max-width: 480px;
-    color: #999;
+    max-width: 520px;
+    color: #aaa;
     font-family: 'Roboto';
     font-size: 17px;
     margin: 0 auto;
 }
 
 a {
-    color: #ddd;
+    color: hsl(141, 70%, 50%);
     text-decoration: none;
     font-weight: 500;
 }
 
     a:hover, a:focus {
-        color: #fff;
+        color: hsl(141, 100%, 50%);
     }
 
-#loginBlock, #inputForm {
-    padding: 4px;
-}
-
-#userName, #message {
-    width: 70%;
-    padding: 8px;
-    margin: 4px;
-    background: #191919;
-    color: white;
-    border: 1px solid #191919;
-    border-radius: 12px;
-}
-
-    #userName:hover, #message:hover {
-        border: 1px solid #333;
-    }
-
-#loginBtn, #sendBtn {
-    padding: 8px;
-    margin: 4px;
-    border: none;
-    border-radius: 12px;
-    background: #333;
-    color: white;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-    #loginBtn:hover, #sendBtn:hover {
-        background: #444;
-    }
-
-center {
-    margin-top: 32px;
+#loginBlock, #inputForm, #header, #chatroom {
+    max-width: 100%;
 }
 
 #header {
-    padding: 8px;
+    text-align: center;
 }
 
-    #header > h3 {
-        margin: 10px;
-        padding: 0;
-    }
-
-#chatroom p {
-    display: block;
-    max-width: 480px;
-    word-wrap: break-word;
-    background: #333;
+#userName, #message {
+    display: inline-block;
+    width: 70%;
+    background: #444;
     color: white;
-    padding: 12px;
-    margin: 8px;
+    font-family: 'Roboto';
+    padding: 10px 8px 10px 8px;
+    cursor: text;
     border-radius: 16px;
-    position: relative;
 }
 
-    #chatroom p:hover {
-        background: #393939;
+    #userName:hover, #message:hover {
+        background: #4c4c4c;
     }
+
+#loginBtn, #sendBtn {
+    display: inline-block;
+    width: 24%;
+    background: #555;
+    color: white;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 16px;
+    font-weight: 600;
+}
+
+    #loginBtn:hover, #sendBtn:hover {
+        background: #5c5c5c;
+    }
+
+#chatroom {
+    display: block;
+}
+
+    #chatroom p {
+        word-wrap: break-word;
+        background: #2d2d2d;
+        padding: 8px;
+        margin: 4px;
+        border-radius: 16px;
+    }
+
+        #chatroom p:hover {
+            background: #333;
+        }
+
+    #chatroom b {
+        color: #dc143c;
+    }
+
+        #chatroom b:hover {
+            color: #ef395d;
+        }
 
 .time {
-    display: inline-block;
-    /*font-size: 14px;*/
-    font-size: 12px;
-    font-weight: 500;
-    color: hsl(40, 100%, 55%);
-    /*padding: 8px;*/
-    position: absolute;
-    bottom: 0px;
-    right: 10px;
+    font-size: 13px;
+    display: block;
 }
 
-@media (max-width: 479px) {
-    body {
-        max-width: 100%;
-    }
+#loginBlock, #inputForm, #header, #chatroom {
+    margin: 8px;
+    padding: 16px;
+    border-radius: 16px;
+    background: rgba(33, 33, 33, 0.7);
+}
 
-    #userName, #message {
-        width: 50%;
-    }
+center {
+    display: none;
 }
